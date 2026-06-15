@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TechEduca — Изучай языки мира</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { inter: ['Inter', 'sans-serif'] },
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="font-inter antialiased">
+
+  <!-- NAVBAR -->
+  <nav class="fixed top-0 left-0 right-0 z-50 h-16 border-b border-white/[0.06]" style="backdrop-filter:blur(24px);background:rgba(5,5,5,0.8)">
+    <div class="max-w-7xl mx-auto h-full px-6 flex items-center justify-between">
+      <!-- Logo -->
+      <a href="#" onclick="showLanding()" class="flex items-center gap-2.5 group">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" class="transition-transform duration-500 group-hover:rotate-12">
+          <rect width="32" height="32" rx="8" fill="url(#logoGrad)"/>
+          <path d="M16 6C10.48 6 6 10.48 6 16s4.48 10 10 10 10-4.48 10-10S21.52 6 16 6zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="white" fill-opacity="0.9"/>
+          <path d="M16 9c-3.87 0-7 3.13-7 7s3.13 7 7 7 7-3.13 7-7-3.13-7-7-7zm0 12c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z" fill="white" fill-opacity="0.4"/>
+          <path d="M14 12h4v8h-4z" fill="white" fill-opacity="0.9" rx="1"/>
+          <path d="M12 15h8v2h-8z" fill="white" fill-opacity="0.9" rx="1"/>
+          <circle cx="22" cy="8" r="2" fill="#34d399"/>
+          <circle cx="8" cy="24" r="1.5" fill="#6ee7b7" opacity="0.6"/>
+          <defs>
+            <linearGradient id="logoGrad" x1="0" y1="0" x2="32" y2="32">
+              <stop stop-color="#10b981"/>
+              <stop offset="1" stop-color="#047857"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <span class="text-white font-semibold text-lg tracking-tight">Tech<span class="accent-gradient">Educa</span></span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#courses" id="navLinkCourses" class="text-sm text-slate-400 hover:text-white transition-colors duration-300">Курсы</a>
+        <a href="#exercises" id="navLinkExercises" class="text-sm text-slate-400 hover:text-white transition-colors duration-300">Упражнения</a>
+        <a href="#community" id="navLinkCommunity" class="text-sm text-slate-400 hover:text-white transition-colors duration-300">Сообщество</a>
+        <a href="#about" id="navLinkAbout" class="text-sm text-slate-400 hover:text-white transition-colors duration-300">О нас</a>
+        <a href="#reviews" id="navLinkReviews" class="text-sm text-slate-400 hover:text-white transition-colors duration-300">Отзывы</a>
+        <a href="#resources" id="navLinkResources" class="text-sm text-slate-400 hover:text-white transition-colors duration-300">Ресурсы</a>
+        <a href="#contact" id="navLinkContact" class="text-sm text-slate-400 hover:text-white transition-colors duration-300">Контакты</a>
+      </div>
+
+      <!-- CTA + Mobile + Auth -->
+      <div class="flex items-center gap-3" id="navAuthContainer">
+        <!-- Will be populated by JS -->
+      </div>
+    </div>
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu md:hidden bg-[#0A0A0A] border-t border-white/[0.06]">
+      <div class="px-6 py-4 flex flex-col gap-3" id="mobileMenuContent">
+        <!-- Content -->
+      </div>
+    </div>
+  </nav>
+
+  <!-- === LANDING PAGE CONTENT === -->
+  <main id="landingContent">
+    <!-- HERO -->
+    <section id="hero" class="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden">
+      <div class="absolute top-20 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-emerald-500/[0.06] rounded-full hero-mask" style="filter:blur(120px)"></div>
+      <div class="absolute top-40 right-1/4 w-[300px] h-[300px] bg-emerald-400/[0.04] rounded-full" style="filter:blur(100px)"></div>
+
+      <div class="max-w-7xl mx-auto px-6 text-center relative z-10">
+        <div class="reveal inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-emerald-500/20 bg-emerald-500/[0.05] mb-8">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span class="text-xs font-medium text-emerald-400">Более 0 студентов уже с нами</span>
+        </div>
+
+        <h1 class="reveal text-5xl md:text-7xl font-semibold leading-[1] tracking-tighter gradient-text mb-6" style="transition-delay:100ms">
+          Изучай языки<br>
+          <span class="accent-gradient">весь мир</span>
+        </h1>
+
+        <p class="reveal text-lg md:text-xl font-light text-slate-400 leading-relaxed max-w-2xl mx-auto mb-10 tracking-wide" style="transition-delay:200ms">
+          Интерактивные уроки, живое общение с носителями языка и геймификация — всё, чтобы заговорить уверенно и без скучной зубрёжки.
+        </p>
+
+        <div class="reveal flex flex-col sm:flex-row items-center justify-center gap-4 mb-16" style="transition-delay:300ms">
+          <button onclick="showToast('Добро пожаловать в TechEduca!')" id="heroCtaBtn" class="text-sm font-semibold text-black bg-white px-8 py-3.5 rounded-xl hover:bg-emerald-100 transition-all duration-200 pulse-glow">
+            Начать обучение бесплатно
+          </button>
+          <a href="#courses" class="text-sm font-medium text-white px-8 py-3.5 rounded-xl border border-white/10 hover:border-white/20 transition-all duration-300 flex items-center gap-2">
+            <iconify-icon icon="lucide:play-circle" width="16" class="text-emerald-400"></iconify-icon>
+            Смотреть демо
+          </a>
+        </div>
+
+        <div class="reveal" style="transition-delay:400ms">
+          <p class="text-xs text-slate-500 uppercase tracking-widest mb-4">Популярные языки</p>
+          <div class="flex flex-wrap justify-center gap-3">
+            <button onclick="filterByLang('english')" class="lang-btn flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/[0.04] border border-white/[0.08] text-sm text-slate-300 hover:text-white">
+              <span class="text-lg">🇬🇧</span> Английский
+            </button>
+            <button onclick="filterByLang('spanish')" class="lang-btn flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/[0.04] border border-white/[0.08] text-sm text-slate-300 hover:text-white">
+              <span class="text-lg">🇪🇸</span> Испанский
+            </button>
+            <button onclick="filterByLang('french')" class="lang-btn flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/[0.04] border border-white/[0.08] text-sm text-slate-300 hover:text-white">
+              <span class="text-lg">🇫🇷</span> Французский
+            </button>
+            <button onclick="filterByLang('german')" class="lang-btn flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/[0.04] border border-white/[0.08] text-sm text-slate-300 hover:text-white">
+              <span class="text-lg">🇩🇪</span> Немецкий
+            </button>
+            <button onclick="filterByLang('japanese')" class="lang-btn flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/[0.04] border border-white/[0.08] text-sm text-slate-300 hover:text-white">
+              <span class="text-lg">🇯🇵</span> Японский
+            </button>
+            <button onclick="filterByLang('chinese')" class="lang-btn flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/[0.04] border border-white/[0.08] text-sm text-slate-300 hover:text-white">
+              <span class="text-lg">🇨🇳</span> Китайский
+            </button>
+          </div>
+        </div>
+
+        <div class="reveal grid grid-cols-2 md:grid-cols-4 gap-6 mt-20 pt-10 border-t border-white/[0.06]" style="transition-delay:500ms">
+          <div>
+            <div class="text-2xl md:text-3xl font-semibold text-white">12+</div>
+            <div class="text-xs text-slate-500 mt-1">Языков</div>
+          </div>
+          <div>
+            <div class="text-2xl md:text-3xl font-semibold text-white">200+</div>
+            <div class="text-xs text-slate-500 mt-1">Курсов</div>
+          </div>
+          <div>
+            <div class="text-2xl md:text-3xl font-semibold text-white">500</div>
+            <div class="text-xs text-slate-500 mt-1">Студентов</div>
+          </div>
+          <div>
+            <div class="text-2xl md:text-3xl font-semibold text-white">98%</div>
+            <div class="text-xs text-slate-500 mt-1">Довольных</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROMO BANNER -->
+    <section class="py-4">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="reveal relative overflow-hidden rounded-2xl border border-emerald-500/20 bg-gradient-to-r from-emerald-900/30 via-emerald-800/20 to-transparent p-6 md:p-8">
+          <div class="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 rounded-full -translate-y-1/2 translate-x-1/2" style="filter:blur(60px)"></div>
+          <div class="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+            <div>
+              <div class="flex items-center gap-2 mb-2">
+                <iconify-icon icon="lucide:zap" width="18" class="text-emerald-400"></iconify-icon>
+                <span class="text-xs font-semibold text-emerald-400 uppercase tracking-wider">Новая акция</span>
+              </div>
+              <h3 class="text-xl md:text-2xl font-semibold text-white mb-1">30 дней PREMIUM бесплатно</h3>
+              <p class="text-sm text-slate-400">Зарегистрируйтесь до конца месяца и получите полный доступ ко всем курсам</p>
+            </div>
+            <button onclick="openAuthModal('register')" class="shrink-0 text-sm font-semibold text-black bg-emerald-400 px-6 py-3 rounded-xl hover:bg-emerald-300 transition-all duration-200" style="box-shadow:0 0 20px -5px rgba(16,185,129,0.5)">
+              Получить доступ
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COURSES SECTION -->
+    <section id="courses" class="py-24 md:py-32">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="reveal text-center mb-12">
+          <p class="text-xs text-emerald-400 uppercase tracking-widest font-medium mb-3">Каталог курсов</p>
+          <h2 class="text-3xl md:text-5xl font-semibold tracking-tight gradient-text mb-4">Выберите свой язык</h2>
+          <p class="text-slate-400 font-light text-lg max-w-xl mx-auto">Более 200 курсов для любого уровня — от первого слова до свободного общения</p>
+        </div>
+
+        <div class="reveal flex flex-wrap justify-center gap-2 mb-10" style="transition-delay:100ms">
+          <button class="filter-btn active px-5 py-2 rounded-lg text-sm bg-white/[0.04] border border-white/[0.08] text-slate-300" onclick="filterLevel(this,'all')">Все уровни</button>
+          <button class="filter-btn px-5 py-2 rounded-lg text-sm bg-white/[0.04] border border-white/[0.08] text-slate-300" onclick="filterLevel(this,'beginner')">Начальный</button>
+          <button class="filter-btn px-5 py-2 rounded-lg text-sm bg-white/[0.04] border border-white/[0.08] text-slate-300" onclick="filterLevel(this,'intermediate')">Средний</button>
+          <button class="filter-btn px-5 py-2 rounded-lg text-sm bg-white/[0.04] border border-white/[0.08] text-slate-300" onclick="filterLevel(this,'advanced')">Продвинутый</button>
+        </div>
+
+        <div id="courseGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Card 1 -->
+          <div class="reveal course-card card-hover rounded-2xl bg-white/[0.02] p-6" data-level="beginner" data-lang="english" data-id="1" style="transition-delay:100ms">
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-3xl">🇬🇧</span>
+              <span class="text-[10px] font-semibold uppercase tracking-wider text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-full">Начальный</span>
+            </div>
+            <h3 class="text-lg font-medium text-white mb-2">Английский с нуля</h3>
+            <p class="text-sm text-slate-400 font-light leading-relaxed mb-4">Полный курс для начинающих: алфавит, базовая грамматика, первые фразы для общения.</p>
+            <div class="flex items-center gap-4 text-xs text-slate-500 mb-4">
+              <span class="flex items-center gap-1"><iconify-icon icon="lucide:clock" width="13"></iconify-icon> 40 часов</span>
+              <span class="flex items-center gap-1"><iconify-icon icon="lucide:video" width="13"></iconify-icon> Видео</span>
+              <span class="flex items-center gap-1"><iconify-icon icon="lucide:headphones" width="13"></iconify-icon> Аудио</span>
+              <span class="flex items-center gap-1"><iconify-icon icon="lucide:message-square" width="13"></iconify-icon> Текст</span>
+            </div>
+            <div class="flex items-center justify-between pt-4 border-t border-white/[0.06]">
+              <div class="flex items-center gap-1">
+                <iconify-icon icon="lucide:star" width="14" class="text-emerald-400"></iconify-icon>
+                <span class="text-sm text-white font-medium">4.9</span>
+                <span class="text-xs text-slate-500">(2.1K)</span>
+              </div>
+              <button onclick="openCourseDetails(this)" class="text-xs font-medium text-emerald-400 hover:text-emerald-300 transition-colors flex items-center gap-1">
+                Подробнее <iconify-icon icon="lucide:arrow-right" width="12"></iconify-icon>
+              </button>
+            </div>
+          </div>
+          <!-- Card 2 -->
+          <div class="reveal course-card card-hover rounded-2xl bg-white/[0.02] p-6" data-level="intermediate" data-lang="english" data-id="2" style="transition-delay:200ms">
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-3xl">🇬🇧</span>
+              <span class="text-[10px] font-semibold uppercase tracking-wider text-yellow-400 bg-yellow-500/10 px-2.5 py-1 rounded-full">Средний</span>
+            </div>
+            <h3 class="text-lg font-medium text-white mb-2">Business English</h3>
+            <p class="text-sm text-slate-400 font-light leading-relaxed mb-4">Деловой английский: презентации, переговоры, деловая переписка и бизнес-лексика.</p>
+            <div class="flex items-center gap-4 text-xs text-slate-500 mb-4">
+              <span class="flex items-center gap-1"><iconify-icon icon="lucide:clock" width="13"></iconify-icon> 60 часов</span>
+              <span class="flex items-center gap-1"><iconify-icon icon="lucide:video" width="13"></iconify-icon> Видео</span>
+              <span class="flex items-center gap-1"><iconify-icon icon="lucide:users" width="13"></iconify-icon> Разговоры</span>
+              <span class="flex items-center gap-1"><iconify-icon icon="lucide:file-text" width="13"></iconify-icon> Текст</span>
+            </div>
+            <div class="flex items-center justify-between pt-4 border-t border-white/[0.06]">
+              <div class="flex items-center gap-1">
+                <iconify-icon icon="lucide:star" width="14" class="text-emerald-400"></iconify-icon>
+                <span class="text-sm text-white font-medium">4.8</span>
+                <span class="text-xs text-slate-500">(1.4K)</span>
+              </div>
+              <button onclick="openCourseDetails(this)" class="text-xs font-medium text-emerald-400 hover:text-emerald-300 transition-colors flex items-center gap-1">
+                Подробнее <iconify-icon icon="lucide:arrow-right" width="12"></iconify-icon>
+              </button>
+            </div>
+          </div>
+          <!-- Card 3 -->
+          <div class="reveal course-card card-hover rounded-2xl bg-white/[0.02] p-6" data-level="beginner" data-lang="spanish" data-id="3" style="transition-delay:300ms">
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-3xl">🇪🇸</span>
+              <span class="text-[10px] font-semibold uppercase tracking-wider text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-full">Начальный</span>
+            </div>
+            <h3 class="text-lg font-medium text-white mb-2">Испанский для путешествий</h3>
+            <p class="text-sm text-slate-400 font-light leading-relaxed mb-4">Всё, что нужно для поездок: заказ еды, навигация, знакомства и экстренные ситуации.</p>
+            <div class="flex items-center gap-4 text-xs text-slate-500 mb-4">
+              <span class="flex items-center gap-1"><iconify-icon icon="lucide:clock" width="13"></iconify-icon> 25 часов</span>
+              <span class="flex items-center gap-1"><iconify-icon icon="lucide:video" width="13"></iconify-icon> Видео</span>
+              <span class="flex items-center gap-1"><iconify-icon icon="lucide:mic" width="13"></iconify-icon> Аудио</span>
+              <span class="flex items-center gap-1"><iconify-icon icon="lucide:book-open" width="13"></iconify-icon> Текст</span>
+            </div>
+            <div class="flex items-center justify-between pt-4 border-t border-white/[0.06]">
+              <div class="flex items-center gap-1">
+                <iconify-icon icon="lucide:star" width="14" class="text-emerald-400"></iconify-icon>
+                <span class="text-sm text-white font-medium">4.7</span>
+                <span class="text-xs text-slate-500">(890)</span>
+              </div>
+              <button onclick="openCourseDetails(this)" class="text-xs font-medium text-emerald-400 hover:text-emerald-300 transition-colors flex items-center gap-1">
+                Подробнее <iconify-icon icon="lucide:arrow-right" width="12"></iconify-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXERCISES SECTION -->
+    <section id="exercises" class="py-24 md:py-32 border-t border-white/[0.06]">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="reveal text-center mb-12">
+          <p class="text-xs text-emerald-400 uppercase tracking-widest font-medium mb-3">Интерактивные упражнения</p>
+          <h2 class="text-3xl md:text-5xl font-semibold tracking-tight gradient-text mb-4">Учись на практике</h2>
+          <p class="text-slate-400 font-light text-lg max-w-xl mx-auto">Разнообразные задания для закрепления материала и отслеживания прогресса</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div class="reveal card-hover rounded-2xl bg-white/[0.02] p-8" style="transition-delay:100ms">
+            <div class="flex items-center gap-2 mb-6">
+              <iconify-icon icon="lucide:brain" width="20" class="text-emerald-400"></iconify-icon>
+              <span class="text-sm font-medium text-white">Мини-тест: английский</span>
+            </div>
+            <p class="text-white font-medium mb-4">Выберите правильный перевод:</p>
+            <p class="text-xl text-slate-300 mb-6">«She is reading a book»</p>
+            <div id="quizOptions" class="space-y-3">
+              <button onclick="checkAnswer(this, false)" class="quiz-option w-full text-left px-5 py-3.5 rounded-xl bg-white/[0.03] border border-white/[0.08] text-sm text-slate-300 hover:border-white/20 transition-all duration-200">
+                A. Она пишет книгу
+              </button>
+              <button onclick="checkAnswer(this, true)" class="quiz-option w-full text-left px-5 py-3.5 rounded-xl bg-white/[0.03] border border-white/[0.08] text-sm text-slate-300 hover:border-white/20 transition-all duration-200">
+                B. Она читает книгу
+              </button>
+              <button onclick="checkAnswer(this, false)" class="quiz-option w-full text-left px-5 py-3.5 rounded-xl bg-white/[0.03] border border-white/[0.08] text-sm text-slate-300 hover:border-white/20 transition-all duration-200">
+                C. Она покупает книгу
+              </button>
+              <button onclick="checkAnswer(this, false)" class="quiz-option w-full text-left px-5 py-3.5 rounded-xl bg-white/[0.03] border border-white/[0.08] text-sm text-slate-300 hover:border-white/20 transition-all duration-200">
+                D. Она продает книгу
+              </button>
+            </div>
+            <div id="quizFeedback" class="mt-4 text-sm hidden"></div>
+          </div>
+
+          <div class="space-y-6">
+            <div class="reveal card-hover rounded-2xl bg-white/[0.02] p-8" style="transition-delay:200ms">
+              <div class="flex items-center justify-between mb-6">
+                <span class="text-sm font-medium text-white">Ваш прогресс</span>
+                <span class="text-xs text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-full">Уровень 7</span>
+              </div>
+              <div class="space-y-5">
+                <div>
+                  <div class="flex justify-between text-xs mb-2">
+                    <span class="text-slate-400">Английский</span>
+                    <span class="text-emerald-400">72%</span>
+                  </div>
+                  <div class="h-2 bg-white/[0.06] rounded-full overflow-hidden">
+                    <div class="h-full bg-gradient-to-r from-emerald-500 to-emerald-400 rounded-full transition-all duration-1000" style="width:72%"></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-xs mb-2">
+                    <span class="text-slate-400">Испанский</span>
+                    <span class="text-yellow-400">45%</span>
+                  </div>
+                  <div class="h-2 bg-white/[0.06] rounded-full overflow-hidden">
+                    <div class="h-full bg-gradient-to-r from-yellow-500 to-yellow-400 rounded-full transition-all duration-1000" style="width:45%"></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-xs mb-2">
+                    <span class="text-slate-400">Японский</span>
+                    <span class="text-purple-400">28%</span>
+                  </div>
+                  <div class="h-2 bg-white/[0.06] rounded-full overflow-hidden">
+                    <div class="h-full bg-gradient-to-r from-purple-500 to-purple-400 rounded-full transition-all duration-1000" style="width:28%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="reveal card-hover rounded-2xl bg-white/[0.02] p-8" style="transition-delay:300ms">
+              <span class="text-sm font-medium text-white block mb-4">Достижения</span>
+              <div class="grid grid-cols-4 gap-4">
+                <div class="flex flex-col items-center gap-2 group">
+                  <div class="w-12 h-12 rounded-xl bg-emerald-500/15 flex items-center justify-center border border-emerald-500/30 group-hover:scale-110 transition-transform duration-300">
+                    <iconify-icon icon="lucide:flame" width="22" class="text-emerald-400"></iconify-icon>
+                  </div>
+                  <span class="text-[10px] text-slate-500 text-center">7 дней подряд</span>
+                </div>
+                <div class="flex flex-col items-center gap-2 group">
+                  <div class="w-12 h-12 rounded-xl bg-yellow-500/15 flex items-center justify-center border border-yellow-500/30 group-hover:scale-110 transition-transform duration-300">
+                    <iconify-icon icon="lucide:trophy" width="22" class="text-yellow-400"></iconify-icon>
+                  </div>
+                  <span class="text-[10px] text-slate-500 text-center">Первый тест</span>
+                </div>
+                <div class="flex flex-col items-center gap-2 group">
+                  <div class="w-12 h-12 rounded-xl bg-purple-500/15 flex items-center justify-center border border-purple-500/30 group-hover:scale-110 transition-transform duration-300">
+                    <iconify-icon icon="lucide:book-open" width="22" class="text-purple-400"></iconify-icon>
+                  </div>
+                  <span class="text-[10px] text-slate-500 text-center">100 слов</span>
+                </div>
+                <div class="flex flex-col items-center gap-2 group">
+                  <div class="w-12 h-12 rounded-xl bg-white/[0.04] flex items-center justify-center border border-white/[0.08] opacity-40">
+                    <iconify-icon icon="lucide:lock" width="22" class="text-slate-500"></iconify-icon>
+                  </div>
+                  <span class="text-[10px] text-slate-500 text-center">Заблокировано</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMMUNITY SECTION -->
+    <section id="community" class="py-24 md:py-32 border-t border-white/[0.06]">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="reveal text-center mb-12">
+          <p class="text-xs text-emerald-400 uppercase tracking-widest font-medium mb-3">Сообщество</p>
+          <h2 class="text-3xl md:text-5xl font-semibold tracking-tight gradient-text mb-4">Учись вместе с миром</h2>
+          <p class="text-slate-400 font-light text-lg max-w-xl mx-auto">Находите языковых партнёров, общайтесь в чатах и форумах, практикуйте с носителями</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="reveal card-hover rounded-2xl bg-white/[0.02] p-6 md:col-span-2" style="transition-delay:100ms">
+            <div class="flex items-center justify-between mb-6">
+              <div class="flex items-center gap-3">
+                <div class="w-3 h-3 rounded-full bg-emerald-400 animate-pulse"></div>
+                <span class="text-sm font-medium text-white">Групповой чат: Английский разговорный</span>
+              </div>
+              <span class="text-xs text-slate-500">24 онлайн</span>
+            </div>
+            <div class="space-y-4 mb-6">
+              <div class="flex gap-3">
+                <div class="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center text-xs font-semibold text-blue-400 shrink-0">МП</div>
+                <div>
+                  <div class="flex items-center gap-2 mb-1">
+                    <span class="text-xs text-white font-medium">Мария П.</span>
+                    <span class="text-[10px] text-slate-600">14:23</span>
+                  </div>
+                  <div class="bg-white/[0.04] rounded-xl rounded-tl-sm px-4 py-2.5 text-sm text-slate-300 inline-block">Can anyone explain the difference between "affect" and "effect"? 🤔</div>
+                </div>
+              </div>
+              <div class="flex gap-3">
+                <div class="w-8 h-8 rounded-full bg-emerald-500/20 flex items-center justify-center text-xs font-semibold text-emerald-400 shrink-0">ДжС</div>
+                <div>
+                  <div class="flex items-center gap-2 mb-1">
+                    <span class="text-xs text-emerald-400 font-medium">John S. <span class="text-[10px] text-emerald-600">носитель</span></span>
+                    <span class="text-[10px] text-slate-600">14:25</span>
+                  </div>
+                  <div class="bg-emerald-500/[0.06] border border-emerald-500/10 rounded-xl rounded-tl-sm px-4 py-2.5 text-sm text-slate-300 inline-block">"Affect" is usually a verb, "effect" is usually a noun. Example: The weather <span class="text-emerald-400">affects</span> my mood. The <span class="text-emerald-400">effect</span> was noticeable.</div>
+                </div>
+              </div>
+              <div class="flex gap-3">
+                <div class="w-8 h-8 rounded-full bg-purple-500/20 flex items-center justify-center text-xs font-semibold text-purple-400 shrink-0">АВ</div>
+                <div>
+                  <div class="flex items-center gap-2 mb-1">
+                    <span class="text-xs text-white font-medium">Алексей В.</span>
+                    <span class="text-[10px] text-slate-600">14:26</span>
+                  </div>
+                  <div class="bg-white/[0.04] rounded-xl rounded-tl-sm px-4 py-2.5 text-sm text-slate-300 inline-block">Thanks! That's super helpful 👍</div>
+                </div>
+              </div>
+            </div>
+            <div class="flex gap-3">
+              <input type="text" placeholder="Написать сообщение..." class="flex-1 bg-white/[0.04] border border-white/[0.08] rounded-xl px-4 py-3 text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-emerald-500/30 transition-colors">
+              <button onclick="showToast('Зарегистрируйтесь, чтобы писать в чат!')" class="px-4 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black transition-colors">
+                <iconify-icon icon="lucide:send" width="16"></iconify-icon>
+              </button>
+            </div>
+          </div>
+
+          <div class="reveal card-hover rounded-2xl bg-white/[0.02] p-6" style="transition-delay:200ms">
+            <span class="text-sm font-medium text-white block mb-4">Языковые партнёры</span>
+            <div class="space-y-4">
+              <div class="flex items-center gap-3 p-3 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:border-emerald-500/20 transition-all cursor-pointer">
+                <img src="https://picsum.photos/seed/partner1/48/48.jpg" class="w-10 h-10 rounded-full object-cover" alt="">
+                <div class="flex-1 min-w-0">
+                  <div class="text-sm text-white font-medium">Sarah M.</div>
+                  <div class="text-[11px] text-slate-500 truncate">🇬🇧→🇷🇺 Английский / Русский</div>
+                </div>
+                <div class="w-2 h-2 rounded-full bg-emerald-400 shrink-0"></div>
+              </div>
+              <div class="flex items-center gap-3 p-3 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:border-emerald-500/20 transition-all cursor-pointer">
+                <img src="https://picsum.photos/seed/partner2/48/48.jpg" class="w-10 h-10 rounded-full object-cover" alt="">
+                <div class="flex-1 min-w-0">
+                  <div class="text-sm text-white font-medium">Pablo R.</div>
+                  <div class="text-[11px] text-slate-500 truncate">🇪🇸→🇷🇺 Испанский / Русский</div>
+                </div>
+                <div class="w-2 h-2 rounded-full bg-emerald-400 shrink-0"></div>
+              </div>
+              <div class="flex items-center gap-3 p-3 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:border-emerald-500/20 transition-all cursor-pointer">
+                <img src="https://picsum.photos/seed/partner3/48/48.jpg" class="w-10 h-10 rounded-full object-cover" alt="">
+                <div class="flex-1 min-w-0">
+                  <div class="text-sm text-white font-medium">Yuki T.</div>
+                  <div class="text-[11px] text-slate-500 truncate">🇯🇵→🇷🇺 Японский / Русский</div>
+                </div>
+                <div class="w-2 h-2 rounded-full bg-slate-600 shrink-0"></div>
+              </div>
+              <div class="flex items-center gap-3 p-3 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:border-emerald-500/20 transition-all cursor-pointer">
+                <img src="https://picsum.photos/seed/partner4/48/48.jpg" class="w-10 h-10 rounded-full object-cover" alt="">
+                <div class="flex-1 min-w-0">
+                  <div class="text-sm text-white font-medium">Hans K.</div>
+                  <div class="text-[11px] text-slate-500 truncate">🇩🇪→🇷🇺 Немецкий / Русский</div>
+                </div>
+                <div class="w-2 h-2 rounded-full bg-emerald-400 shrink-0"></div>
+              </div>
+            </div>
+            <button onclick="showToast('Зарегистрируйтесь, чтобы найти партнёра!')" class="w-full mt-4 text-xs font-medium text-emerald-400 hover:text-emerald-300 py-2.5 rounded-xl border border-emerald-500/20 hover:border-emerald-500/40 transition-all">
+              Найти партнёра
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEW: ABOUT US SECTION -->
+    <section id="about" class="py-24 md:py-32 border-t border-white/[0.06] bg-[#050505]">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div class="reveal">
+            <p class="text-xs text-emerald-400 uppercase tracking-widest font-medium mb-3">О компании</p>
+            <h2 class="text-3xl md:text-5xl font-semibold tracking-tight gradient-text mb-6">Делаем образование доступным для каждого</h2>
+            <p class="text-slate-400 font-light text-lg leading-relaxed mb-8">
+              TechEduca основана с миссией разрушить языковые барьеры с помощью технологий. Мы верим, что изучение языка должно быть увлекательным, социальным и ориентированным на результат.
+            </p>
+            
+            <div class="space-y-6">
+              <div class="flex items-start gap-4">
+                <div class="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center shrink-0">
+                  <iconify-icon icon="lucide:target" width="20" class="text-emerald-400"></iconify-icon>
+                </div>
+                <div>
+                  <h3 class="text-white font-medium mb-1">Наша миссия</h3>
+                  <p class="text-sm text-slate-500">Создать глобальное сообщество, где каждый человек может свободно общаться на любом языке.</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <div class="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center shrink-0">
+                  <iconify-icon icon="lucide:users" width="20" class="text-blue-400"></iconify-icon>
+                </div>
+                <div>
+                  <h3 class="text-white font-medium mb-1">Наши ценности</h3>
+                  <p class="text-sm text-slate-500">Инклюзивность, качество контента и поддержка на каждом этапе обучения.</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <div class="w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center shrink-0">
+                  <iconify-icon icon="lucide:zap" width="20" class="text-purple-400"></iconify-icon>
+                </div>
+                <div>
+                  <h3 class="text-white font-medium mb-1">Инновации</h3>
+                  <p class="text-sm text-slate-500">Используем ИИ для персонализации учебного плана и мгновенной обратной связи.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="reveal relative" style="transition-delay:200ms">
+             <!-- Decorative bg -->
+             <div class="absolute -top-10 -right-10 w-40 h-40 bg-emerald-500/20 rounded-full blur-3xl"></div>
+             <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-blue-500/20 rounded-full blur-3xl"></div>
+
+             <div class="relative bg-white/[0.02] rounded-3xl border border-white/[0.06] p-8 overflow-hidden">
+                <div class="grid grid-cols-2 gap-6">
+                  <div class="p-6 rounded-2xl bg-white/[0.02] text-center border border-white/[0.06]">
+                    <div class="text-4xl font-bold text-white mb-2">5+</div>
+                    <div class="text-xs text-slate-500">Лет на рынке</div>
+                  </div>
+                  <div class="p-6 rounded-2xl bg-white/[0.02] text-center border border-white/[0.06]">
+                    <div class="text-4xl font-bold text-white mb-2">50+</div>
+                    <div class="text-xs text-slate-500">Экспертов</div>
+                  </div>
+                  <div class="p-6 rounded-2xl bg-white/[0.02] text-center border border-white/[0.06]">
+                    <div class="text-4xl font-bold text-white mb-2">1M+</div>
+                    <div class="text-xs text-slate-500">Уроков</div>
+                  </div>
+                  <div class="p-6 rounded-2xl bg-white/[0.02] text-center border border-white/[0.06]">
+                    <div class="text-4xl font-bold text-white mb-2">24/7</div>
+                    <div class="text-xs text-slate-500">Поддержка</div>
+                  </div>
+                </div>
+             </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEW: REVIEWS SECTION -->
+    <section id="reviews" class="py-24 md:py-32 border-t border-white/[0.06]">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="reveal text-center mb-12">
+          <p class="text-xs text-emerald-400 uppercase tracking-widest font-medium mb-3">Отзывы</p>
+          <h2 class="text-3xl md:text-5xl font-semibold tracking-tight gradient-text mb-4">Что говорят наши студенты</h2>
+          <p class="text-slate-400 font-light text-lg max-w-xl mx-auto">Реальные истории успеха от людей, которые уже говорят на новых языках</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Review 1 -->
+          <div class="reveal card-hover rounded-2xl bg-white/[0.02] p-6" style="transition-delay:100ms">
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center gap-3">
+                <img src="https://picsum.photos/seed/user1/100/100.jpg" class="w-12 h-12 rounded-full object-cover border-2 border-emerald-500/20" alt="">
+                <div>
+                  <div class="text-sm text-white font-medium">Анна Смирнова</div>
+                  <div class="text-[11px] text-slate-500">Изучает: Английский (B2)</div>
+                </div>
+              </div>
+              <div class="flex text-yellow-400">
+                <iconify-icon icon="lucide:star" width="16"></iconify-icon>
+                <iconify-icon icon="lucide:star" width="16"></iconify-icon>
+                <iconify-icon icon="lucide:star" width="16"></iconify-icon>
+                <iconify-icon icon="lucide:star" width="16"></iconify-icon>
+                <iconify-icon icon="lucide:star" width="16"></iconify-icon>
+              </div>
+            </div>
+            <p class="text-sm text-slate-300 font-light leading-relaxed mb-4 italic">
+              "Никогда не думала, что смогу сдать IELTS, но TechEduca сделала процесс таким легким! Особенно понравилась практика говорения с носителями."
+            </p>
+            <div class="text-xs text-slate-600">2 недели назад</div>
+          </div>
+
+          <!-- Review 2 -->
+          <div class="reveal card-hover rounded-2xl bg-white/[0.02] p-6" style="transition-delay:200ms">
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center gap-3">
+                <img src="https://picsum.photos/seed/user2/100/100.jpg" class="w-12 h-12 rounded-full object-cover border-2 border-emerald-500/20" alt="">
+                <div>
+                  <div class="text-sm text-white font-medium">Дмитрий Волков</div>
+                  <div class="text-[11px] text-slate-500">Изучает: Китайский (HSK 3)</div>
+                </div>
+              </div>
+              <div class="flex text-yellow-400">
+                <iconify-icon icon="lucide:star" width="16"></iconify-icon>
+                <iconify-icon icon="lucide:star" width="16"></iconify-icon>
+                <iconify-icon icon="lucide:star" width="16"></iconify-icon>
+                <iconify-icon icon="lucide:star" width="16"></iconify-icon>
+                <iconify-icon icon="lucide:star" width="16"></iconify-icon>
+              </div>
+            </div>
+            <p class="text-sm text-slate-300 font-light leading-relaxed mb-4 italic">
+              "Иероглифы казались невозможными, но система интервального повторения здесь работает идеально. Прошел уровень за 4 месяца."
+            </p>
+            <div class="text-xs text-slate-600">1 месяц назад</div>
+          </div>
+
+          <!-- Review 3 -->
+          <div class="reveal card-hover rounded-2xl bg-white/[0.02] p-6" style="transition-delay:300ms">
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center gap-3">
+                <img src="https://picsum.photos/seed/user3/100/100.jpg" class="w-12 h-12 rounded-full object-cover border-2 border-emerald-500/20" alt="">
+                <div>
+                  <div class="text-sm text-white font-medium">Мария Гонсалес</div>
+                  <div class="text-[11px] text-slate-500">Изучает: Испанский</div>
+                </div>
+              </div>
+              <div class="flex text-yellow-400">
+                <iconify-icon icon="lucide:star" width="16"></iconify-icon>
+                <iconify-icon icon="lucide:star" width="16"></iconify-icon>
+                <iconify-icon icon="lucide:star" width="16"></iconify-icon>
+                <iconify-icon icon="lucide:star" width="16"></iconify-icon>
+                <iconify-icon icon="lucide:star-half" width="16"></iconify-icon>
+              </div>
+            </div>
+            <p class="text-sm text-slate-300 font-light leading-relaxed mb-4 italic">
+              "Впечатляющее качество контента за такую цену. Уроки короткие, но очень информативные. Рекомендую всем!"
+            </p>
+            <div class="text-xs text-slate-600">3 дня назад</div>
+          </div>
+        </div>
+        
+        <div class="reveal text-center mt-12" style="transition-delay:400ms">
+           <button class="text-sm font-medium text-emerald-400 hover:text-emerald-300 border-b border-emerald-500/50 pb-1 transition-all">
+            Читать все отзывы 
+           </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESOURCES / BLOG SECTION -->
+    <section id="resources" class="py-24 md:py-32 border-t border-white/[0.06]">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="reveal text-center mb-12">
+          <p class="text-xs text-emerald-400 uppercase tracking-widest font-medium mb-3">Блог и ресурсы</p>
+          <h2 class="text-3xl md:text-5xl font-semibold tracking-tight gradient-text mb-4">Полезные материалы</h2>
+          <p class="text-slate-400 font-light text-lg max-w-xl mx-auto">Статьи, советы и рекомендации для эффективного изучения языков</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <article class="reveal card-hover rounded-2xl bg-white/[0.02] overflow-hidden group cursor-pointer" onclick="openBlog('tips')" style="transition-delay:100ms">
+            <div class="h-48 overflow-hidden">
+              <img src="https://picsum.photos/seed/blog-lang-tips/600/400.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="">
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="text-[10px] font-semibold uppercase tracking-wider text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full">Советы</span>
+                <span class="text-[10px] text-slate-600">12 мин чтения</span>
+              </div>
+              <h3 class="text-base font-medium text-white mb-2 group-hover:text-emerald-400 transition-colors">7 техник запоминания слов, которые реально работают</h3>
+              <p class="text-sm text-slate-500 font-light leading-relaxed">Интервальное повторение, метод локусов и другие научно доказанные способы...</p>
+            </div>
+          </article>
+
+          <article class="reveal card-hover rounded-2xl bg-white/[0.02] overflow-hidden group cursor-pointer" onclick="openBlog('culture')" style="transition-delay:200ms">
+            <div class="h-48 overflow-hidden">
+              <img src="https://picsum.photos/seed/blog-culture/600/400.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="">
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="text-[10px] font-semibold uppercase tracking-wider text-purple-400 bg-purple-500/10 px-2 py-0.5 rounded-full">Культура</span>
+                <span class="text-[10px] text-slate-600">8 мин чтения</span>
+              </div>
+              <h3 class="text-base font-medium text-white mb-2 group-hover:text-emerald-400 transition-colors">Почему важно изучать культуру вместе с языком</h3>
+              <p class="text-sm text-slate-500 font-light leading-relaxed">Язык — это ключ к пониманию менталитета, традиций и образа мышления...</p>
+            </div>
+          </article>
+
+          <article class="reveal card-hover rounded-2xl bg-white/[0.02] overflow-hidden group cursor-pointer" onclick="openBlog('apps')" style="transition-delay:300ms">
+            <div class="h-48 overflow-hidden">
+              <img src="https://picsum.photos/seed/blog-apps/600/400.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="">
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="text-[10px] font-semibold uppercase tracking-wider text-yellow-400 bg-yellow-500/10 px-2 py-0.5 rounded-full">Ресурсы</span>
+                <span class="text-[10px] text-slate-600">15 мин чтения</span>
+              </div>
+              <h3 class="text-base font-medium text-white mb-2 group-hover:text-emerald-400 transition-colors">Топ-10 приложений-компаньонов для изучения языков</h3>
+              <p class="text-sm text-slate-500 font-light leading-relaxed">Подборка лучших приложений для словарей, аудирования и практики...</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="reveal mt-12 card-hover rounded-2xl bg-white/[0.02] p-8" style="transition-delay:200ms">
+          <span class="text-sm font-medium text-white block mb-6">Рекомендуемые книги</span>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="group cursor-pointer">
+              <div class="h-40 rounded-xl bg-white/[0.03] border border-white/[0.06] mb-3 flex items-center justify-center overflow-hidden group-hover:border-emerald-500/20 transition-all">
+                <img src="https://picsum.photos/seed/book1/200/280.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="">
+              </div>
+              <h4 class="text-sm text-white font-medium group-hover:text-emerald-400 transition-colors">English Grammar in Use</h4>
+              <p class="text-xs text-slate-500 mt-0.5">Raymond Murphy</p>
+            </div>
+            <div class="group cursor-pointer">
+              <div class="h-40 rounded-xl bg-white/[0.03] border border-white/[0.06] mb-3 flex items-center justify-center overflow-hidden group-hover:border-emerald-500/20 transition-all">
+                <img src="https://picsum.photos/seed/book2/200/280.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="">
+              </div>
+              <h4 class="text-sm text-white font-medium group-hover:text-emerald-400 transition-colors">Fluent Forever</h4>
+              <p class="text-xs text-slate-500 mt-0.5">Gabriel Wyner</p>
+            </div>
+            <div class="group cursor-pointer">
+              <div class="h-40 rounded-xl bg-white/[0.03] border border-white/[0.06] mb-3 flex items-center justify-center overflow-hidden group-hover:border-emerald-500/20 transition-all">
+                <img src="https://picsum.photos/seed/book3/200/280.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="">
+              </div>
+              <h4 class="text-sm text-white font-medium group-hover:text-emerald-400 transition-colors">Понятно о японском</h4>
+              <p class="text-xs text-slate-500 mt-0.5">Елена Поливанова</p>
+            </div>
+            <div class="group cursor-pointer">
+              <div class="h-40 rounded-xl bg-white/[0.03] border border-white/[0.06] mb-3 flex items-center justify-center overflow-hidden group-hover:border-emerald-500/20 transition-all">
+                <img src="https://picsum.photos/seed/book4/200/280.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="">
+              </div>
+              <h4 class="text-sm text-white font-medium group-hover:text-emerald-400 transition-colors">Скороговорки мира</h4>
+              <p class="text-xs text-slate-500 mt-0.5">Сборник</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section id="faq" class="py-24 md:py-32 border-t border-white/[0.06]">
+      <div class="max-w-3xl mx-auto px-6">
+        <div class="reveal text-center mb-12">
+          <p class="text-xs text-emerald-400 uppercase tracking-widest font-medium mb-3">Поддержка</p>
+          <h2 class="text-3xl md:text-5xl font-semibold tracking-tight gradient-text mb-4">Частые вопросы</h2>
+        </div>
+
+        <div class="reveal space-y-3" style="transition-delay:100ms">
+          <div class="faq-item rounded-xl bg-white/[0.02] border border-white/[0.06] overflow-hidden">
+            <button class="faq-toggle w-full flex items-center justify-between p-5 text-left" onclick="toggleFaq(this)">
+              <span class="text-sm font-medium text-white">Бесплатный доступ — что в него входит?</span>
+              <iconify-icon icon="lucide:chevron-down" width="16" class="text-slate-500 transition-transform duration-300 faq-icon"></iconify-icon>
+            </button>
+            <div class="faq-answer px-5">
+              <p class="text-sm text-slate-400 font-light leading-relaxed pb-5">Бесплатный доступ включает базовые уроки для 12 языков, мини-тесты, доступ к сообществу и блогу. PREMIUM открывает все курсы, упражнения с обратной связью, личного языкового партнёра и сертификаты.</p>
+            </div>
+          </div>
+
+          <div class="faq-item rounded-xl bg-white/[0.02] border border-white/[0.06] overflow-hidden">
+            <button class="faq-toggle w-full flex items-center justify-between p-5 text-left" onclick="toggleFaq(this)">
+              <span class="text-sm font-medium text-white">Сколько времени нужно уделять обучению?</span>
+              <iconify-icon icon="lucide:chevron-down" width="16" class="text-slate-500 transition-transform duration-300 faq-icon"></iconify-icon>
+            </button>
+            <div class="faq-answer px-5">
+              <p class="text-sm text-slate-400 font-light leading-relaxed pb-5">Рекомендуем минимум 15–20 минут в день для устойчивого прогресса. Наши исследования показывают, что студенты, занимающиеся 20+ минут ежедневно, достигают среднего уровня за 4–6 месяцев.</p>
+            </div>
+          </div>
+
+          <div class="faq-item rounded-xl bg-white/[0.02] border border-white/[0.06] overflow-hidden">
+            <button class="faq-toggle w-full flex items-center justify-between p-5 text-left" onclick="toggleFaq(this)">
+              <span class="text-sm font-medium text-white">Как найти языкового партнёра?</span>
+              <iconify-icon icon="lucide:chevron-down" width="16" class="text-slate-500 transition-transform duration-300 faq-icon"></iconify-icon>
+            </button>
+            <div class="faq-answer px-5">
+              <p class="text-sm text-slate-400 font-light leading-relaxed pb-5">В разделе «Сообщество» вы можете найти партнёров по языкам, уровню и интересам. Система автоматически подбирает вам подходящих пользователей. Для видео-звонков доступен встроенный инструмент.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="py-24 md:py-32 border-t border-white/[0.06]">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div class="reveal">
+            <p class="text-xs text-emerald-400 uppercase tracking-widest font-medium mb-3">Обратная связь</p>
+            <h2 class="text-3xl md:text-4xl font-semibold tracking-tight gradient-text mb-4">Свяжитесь с нами</h2>
+            <p class="text-slate-400 font-light text-lg leading-relaxed mb-8">Есть вопросы, предложения или нашли ошибку? Напишите нам, и мы ответим в течение 24 часов.</p>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div class="space-y-4">
+                 <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center shrink-0">
+                    <iconify-icon icon="lucide:mail" width="18" class="text-emerald-400"></iconify-icon>
+                  </div>
+                  <div>
+                    <div class="text-xs text-slate-500">Email</div>
+                    <div class="text-sm text-white">support@techeduca.com</div>
+                  </div>
+                </div>
+                
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center shrink-0">
+                    <iconify-icon icon="lucide:phone" width="18" class="text-blue-400"></iconify-icon>
+                  </div>
+                  <div>
+                    <div class="text-xs text-slate-500">Телефон</div>
+                    <div class="text-sm text-white">+7 (999) 123-45-67</div>
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-indigo-500/10 flex items-center justify-center shrink-0">
+                    <iconify-icon icon="lucide:smartphone" width="18" class="text-indigo-400"></iconify-icon>
+                  </div>
+                  <div>
+                    <div class="text-xs text-slate-500">Приложение</div>
+                    <div class="text-sm text-white cursor-pointer hover:text-emerald-400 transition-colors">Max</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="space-y-4">
+                 <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-purple-500/10 flex items-center justify-center shrink-0">
+                    <iconify-icon icon="lucide:map-pin" width="18" class="text-purple-400"></iconify-icon>
+                  </div>
+                  <div>
+                    <div class="text-xs text-slate-500">Офис</div>
+                    <div class="text-sm text-white">Новосибирск, Пресненская наб., 12</div>
+                  </div>
+                </div>
+
+                 <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-orange-500/10 flex items-center justify-center shrink-0">
+                    <iconify-icon icon="lucide:clock" width="18" class="text-orange-400"></iconify-icon>
+                  </div>
+                  <div>
+                    <div class="text-xs text-slate-500">Время ответа</div>
+                    <div class="text-sm text-white">До 24 часов</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="reveal" style="transition-delay:200ms">
+            <form onsubmit="handleSubmit(event)" class="card-hover rounded-2xl bg-white/[0.02] p-8 space-y-5">
+              <div>
+                <label class="text-xs text-slate-500 block mb-2">Ваше имя</label>
+                <input type="text" required placeholder="Иван Иванов" class="w-full bg-white/[0.04] border border-white/[0.08] rounded-xl px-4 py-3 text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-emerald-500/30 transition-colors">
+              </div>
+              <div>
+                <label class="text-xs text-slate-500 block mb-2">Email</label>
+                <input type="email" required placeholder="ivan@example.com" class="w-full bg-white/[0.04] border border-white/[0.08] rounded-xl px-4 py-3 text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-emerald-500/30 transition-colors">
+              </div>
+              <div>
+                <label class="text-xs text-slate-500 block mb-2">Тема</label>
+                <select class="w-full bg-white/[0.04] border border-white/[0.08] rounded-xl px-4 py-3 text-sm text-slate-400 focus:outline-none focus:border-emerald-500/30 transition-colors appearance-none" style="background-image:url('data:image/svg+xml;utf8,<svg fill=\"%23666\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"16\"><path d=\"M7 10l5 5 5-5z\"/></svg>');background-repeat:no-repeat;background-position:right 12px center;">
+                  <option>Вопрос по курсу</option>
+                  <option>Техническая проблема</option>
+                  <option>Предложение</option>
+                  <option>Сотрудничество</option>
+                  <option>Другое</option>
+                </select>
+              </div>
+              <div>
+                <label class="text-xs text-slate-500 block mb-2">Сообщение</label>
+                <textarea required rows="4" placeholder="Опишите ваш вопрос или предложение..." class="w-full bg-white/[0.04] border border-white/[0.08] rounded-xl px-4 py-3 text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-emerald-500/30 transition-colors resize-none"></textarea>
+              </div>
+              <button type="submit" class="w-full text-sm font-semibold text-black bg-white py-3.5 rounded-xl hover:bg-emerald-100 transition-all duration-200" style="box-shadow:0 0 20px -5px rgba(16,185,129,0.4)">
+                Отправить сообщение
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-24 border-t border-white/[0.06] relative overflow-hidden">
+      <div class="absolute inset-0 bg-emerald-500/[0.03]" style="filter:blur(80px)"></div>
+      <div class="max-w-3xl mx-auto px-6 text-center relative z-10">
+        <div class="reveal">
+          <h2 class="text-3xl md:text-5xl font-semibold tracking-tight gradient-text mb-6">Готовы начать?</h2>
+          <p class="text-slate-400 font-light text-lg mb-8 max-w-xl mx-auto">Присоединяйтесь к 500 студентам, которые уже учат языки с TechEduca. Регистрация бесплатна.</p>
+          <button onclick="showToast('Добро пожаловать в TechEduca!')" class="text-sm font-semibold text-black bg-white px-10 py-4 rounded-xl hover:bg-emerald-100 transition-all duration-200 pulse-glow">
+            Создать бесплатный аккаунт
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+  <!-- END LANDING CONTENT -->
+
+  <!-- === DASHBOARD (PERSONAL CABINET) === -->
+  <section id="dashboard" class="hidden pt-24 pb-10 min-h-screen bg-[#050505]">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+        
+        <!-- Sidebar -->
+        <div class="lg:col-span-1">
+          <div class="card-hover rounded-2xl bg-white/[0.02] p-6 sticky top-24">
+            <div class="flex flex-col items-center text-center mb-6">
+              <div class="w-20 h-20 rounded-full bg-emerald-500/10 flex items-center justify-center mb-3 border-2 border-emerald-500/20">
+                <span id="dashAvatar" class="text-2xl font-bold text-emerald-400">U</span>
+              </div>
+              <h3 id="dashName" class="text-lg font-bold text-white">User Name</h3>
+              <p class="text-xs text-slate-500">Студент</p>
+            </div>
+            
+            <div class="space-y-1">
+              <button onclick="switchDashTab('mycourses')" class="dash-tab active w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-300 hover:bg-white/[0.04] transition-colors">
+                <iconify-icon icon="lucide:book-open" width="18"></iconify-icon> Мои курсы
+              </button>
+              <button onclick="switchDashTab('stats')" class="dash-tab w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-300 hover:bg-white/[0.04] transition-colors">
+                <iconify-icon icon="lucide:bar-chart-2" width="18"></iconify-icon> Статистика
+              </button>
+              <button onclick="switchDashTab('settings')" class="dash-tab w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-300 hover:bg-white/[0.04] transition-colors">
+                <iconify-icon icon="lucide:settings" width="18"></iconify-icon> Настройки
+              </button>
+            </div>
+
+            <div class="mt-8 pt-6 border-t border-white/[0.06]">
+               <button onclick="logoutUser()" class="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-sm font-medium text-red-400 hover:bg-red-500/10 transition-colors">
+                <iconify-icon icon="lucide:log-out" width="18"></iconify-icon> Выйти
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dashboard Content -->
+        <div class="lg:col-span-3">
+          
+          <!-- My Courses Tab -->
+          <div id="dash-mycourses" class="dash-content">
+            <div class="flex items-center justify-between mb-8">
+              <h2 class="text-2xl font-bold text-white">Мои курсы</h2>
+              <span class="text-sm text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full">Активных: <span id="dashCourseCount">0</span></span>
+            </div>
+            
+            <div id="myCoursesGrid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <!-- Empty State -->
+              <div id="dashEmptyState" class="col-span-full text-center py-20 rounded-2xl bg-white/[0.01] border border-white/[0.05] border-dashed">
+                <iconify-icon icon="lucide:book" width="48" class="text-slate-600 mb-4 mx-auto inline-block"></iconify-icon>
+                <h3 class="text-lg font-medium text-white mb-2">У вас пока нет курсов</h3>
+                <p class="text-slate-500 text-sm mb-6">Перейдите в каталог, чтобы записаться на обучение.</p>
+                <button onclick="showLanding()" class="text-sm font-semibold text-emerald-400 hover:text-emerald-300">Перейти в каталог</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stats Tab -->
+          <div id="dash-stats" class="dash-content hidden">
+             <h2 class="text-2xl font-bold text-white mb-8">Моя статистика</h2>
+             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+               <div class="card-hover rounded-2xl bg-white/[0.02] p-6 text-center">
+                  <div class="text-4xl font-bold text-emerald-400 mb-2">12</div>
+                  <div class="text-xs text-slate-500 uppercase tracking-wide">Дней подряд</div>
+               </div>
+               <div class="card-hover rounded-2xl bg-white/[0.02] p-6 text-center">
+                  <div class="text-4xl font-bold text-yellow-400 mb-2">850</div>
+                  <div class="text-xs text-slate-500 uppercase tracking-wide">Выучено слов</div>
+               </div>
+               <div class="card-hover rounded-2xl bg-white/[0.02] p-6 text-center">
+                  <div class="text-4xl font-bold text-purple-400 mb-2">45ч</div>
+                  <div class="text-xs text-slate-500 uppercase tracking-wide">Времени в обучении</div>
+               </div>
+             </div>
+             <!-- Progress chart mock -->
+             <div class="card-hover rounded-2xl bg-white/[0.02] p-6">
+                <h3 class="text-lg font-medium text-white mb-4">Активность за неделю</h3>
+                <div class="flex items-end justify-between h-40 gap-2">
+                   <div class="w-full bg-emerald-500/20 rounded-t-lg relative group" style="height: 40%"><div class="absolute -top-8 left-1/2 -translate-x-1/2 text-xs text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity">Пн</div></div>
+                   <div class="w-full bg-emerald-500/20 rounded-t-lg relative group" style="height: 60%"><div class="absolute -top-8 left-1/2 -translate-x-1/2 text-xs text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity">Вт</div></div>
+                   <div class="w-full bg-emerald-500/20 rounded-t-lg relative group" style="height: 30%"><div class="absolute -top-8 left-1/2 -translate-x-1/2 text-xs text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity">Ср</div></div>
+                   <div class="w-full bg-emerald-500/20 rounded-t-lg relative group" style="height: 80%"><div class="absolute -top-8 left-1/2 -translate-x-1/2 text-xs text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity">Чт</div></div>
+                   <div class="w-full bg-emerald-500/20 rounded-t-lg relative group" style="height: 50%"><div class="absolute -top-8 left-1/2 -translate-x-1/2 text-xs text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity">Пт</div></div>
+                   <div class="w-full bg-emerald-500/20 rounded-t-lg relative group" style="height: 90%"><div class="absolute -top-8 left-1/2 -translate-x-1/2 text-xs text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity">Сб</div></div>
+                   <div class="w-full bg-emerald-500/20 rounded-t-lg relative group" style="height: 20%"><div class="absolute -top-8 left-1/2 -translate-x-1/2 text-xs text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity">Вс</div></div>
+                </div>
+             </div>
+          </div>
+
+          <!-- Settings Tab -->
+          <div id="dash-settings" class="dash-content hidden">
+            <h2 class="text-2xl font-bold text-white mb-8">Настройки профиля</h2>
+            <div class="card-hover rounded-2xl bg-white/[0.02] p-8 max-w-2xl">
+              <form onsubmit="event.preventDefault(); showToast('Настройки сохранены!');" class="space-y-6">
+                <div>
+                  <label class="text-xs text-slate-500 block mb-2">Имя пользователя</label>
+                  <input type="text" id="settingsName" class="w-full bg-white/[0.04] border border-white/[0.08] rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-emerald-500/30 transition-colors">
+                </div>
+                <div>
+                  <label class="text-xs text-slate-500 block mb-2">Email (нельзя изменить)</label>
+                  <input type="email" id="settingsEmail" disabled class="w-full bg-white/[0.02] border border-white/[0.04] rounded-xl px-4 py-3 text-sm text-slate-500 cursor-not-allowed">
+                </div>
+                <div>
+                  <label class="text-xs text-slate-500 block mb-2">Новый пароль</label>
+                  <input type="password" placeholder="Оставьте пустым, если не хотите менять" class="w-full bg-white/[0.04] border border-white/[0.08] rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-emerald-500/30 transition-colors">
+                </div>
+                <button type="submit" class="auth-btn">Сохранить изменения</button>
+              </form>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="relative pt-32 pb-10 bg-[#050505] overflow-hidden" id="mainFooter">
+    <div class="footer-wave">
+      <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+      </svg>
+    </div>
+    <div class="absolute bottom-0 left-0 w-96 h-96 bg-emerald-500/5 rounded-full blur-[100px]"></div>
+    <div class="absolute top-0 right-0 w-64 h-64 bg-blue-500/5 rounded-full blur-[80px]"></div>
+
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+      <div class="reveal mb-16 max-w-xl mx-auto text-center">
+        <h3 class="text-2xl font-semibold text-white mb-3">Подпишитесь на новости</h3>
+        <p class="text-slate-400 text-sm mb-6">Получайте советы по изучению языков и скидки на курсы первыми.</p>
+        <form onsubmit="event.preventDefault(); showToast('Вы успешно подписались!');" class="flex flex-col sm:flex-row gap-3">
+          <input type="email" placeholder="Ваш email" required class="flex-1 bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-emerald-500/50 transition-colors">
+          <button type="submit" class="bg-emerald-500 hover:bg-emerald-400 text-black font-semibold px-6 py-3 rounded-lg transition-all text-sm whitespace-nowrap">Подписаться</button>
+        </form>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+        <div class="col-span-2 md:col-span-1">
+          <a href="#hero" class="flex items-center gap-2 mb-4">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <rect width="32" height="32" rx="8" fill="url(#logoGrad3)"/>
+              <path d="M16 6C10.48 6 6 10.48 6 16s4.48 10 10 10 10-4.48 10-10S21.52 6 16 6zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="white" fill-opacity="0.9"/>
+              <path d="M14 12h4v8h-4z" fill="white" fill-opacity="0.9"/>
+              <path d="M12 15h8v2h-8z" fill="white" fill-opacity="0.9"/>
+              <circle cx="22" cy="8" r="2" fill="#34d399"/>
+              <defs><linearGradient id="logoGrad3" x1="0" y1="0" x2="32" y2="32"><stop stop-color="#10b981"/><stop offset="1" stop-color="#047857"/></linearGradient></defs>
+            </svg>
+            <span class="text-white font-semibold text-lg tracking-tight">Tech<span class="accent-gradient">Educa</span></span>
+          </a>
+          <p class="text-sm text-slate-500 font-light leading-relaxed mb-4">Изучай языки мира через интерактивные уроки и живое общение.</p>
+          <div class="flex items-center gap-4">
+            <a href="#" class="social-icon text-slate-400"><iconify-icon icon="lucide:twitter" width="18"></iconify-icon></a>
+            <a href="#" class="social-icon text-slate-400"><iconify-icon icon="lucide:instagram" width="18"></iconify-icon></a>
+            <a href="#" class="social-icon text-slate-400"><iconify-icon icon="lucide:youtube" width="18"></iconify-icon></a>
+            <a href="#" class="social-icon text-slate-400"><iconify-icon icon="lucide:send" width="18"></iconify-icon></a>
+          </div>
+        </div>
+        <div>
+          <span class="text-xs text-emerald-400 uppercase tracking-wider font-medium block mb-4">Платформа</span>
+          <div class="space-y-3">
+            <a href="#courses" class="footer-link block text-sm text-slate-400 hover:text-white transition-colors">Курсы</a>
+            <a href="#exercises" class="footer-link block text-sm text-slate-400 hover:text-white transition-colors">Упражнения</a>
+            <a href="#community" class="footer-link block text-sm text-slate-400 hover:text-white transition-colors">Сообщество</a>
+            <a href="#resources" class="footer-link block text-sm text-slate-400 hover:text-white transition-colors">Блог</a>
+          </div>
+        </div>
+        <div>
+          <span class="text-xs text-emerald-400 uppercase tracking-wider font-medium block mb-4">Компания</span>
+          <div class="space-y-3">
+            <a href="#about" class="footer-link block text-sm text-slate-400 hover:text-white transition-colors">О нас</a>
+            <a href="#contact" class="footer-link block text-sm text-slate-400 hover:text-white transition-colors">Контакты</a>
+            <a href="#" class="footer-link block text-sm text-slate-400 hover:text-white transition-colors">Вакансии</a>
+            <a href="#" class="footer-link block text-sm text-slate-400 hover:text-white transition-colors">Пресс-центр</a>
+          </div>
+        </div>
+        <div>
+          <span class="text-xs text-emerald-400 uppercase tracking-wider font-medium block mb-4">Поддержка</span>
+          <div class="space-y-3">
+            <a href="#faq" class="footer-link block text-sm text-slate-400 hover:text-white transition-colors">FAQ</a>
+            <a href="#" class="footer-link block text-sm text-slate-400 hover:text-white transition-colors">Политика конфиденциальности</a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-white/[0.06] pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-600">
+        <p>© 2025 TechEduca. Все права защищены.</p>
+        <div class="flex items-center gap-6">
+          <a href="#" class="hover:text-slate-400 transition-colors">Условия использования</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- TOAST -->
+  <div id="toast" class="toast fixed bottom-6 left-1/2 -translate-x-1/2 z-[100] px-6 py-3.5 rounded-xl bg-[#1A1A1A] border border-emerald-500/20 text-sm text-white flex items-center gap-3" style="box-shadow:0 0 30px -5px rgba(16,185,129,0.2)">
+    <iconify-icon icon="lucide:check-circle" width="18" class="text-emerald-400 shrink-0"></iconify-icon>
+    <span id="toastText"></span>
+  </div>
+
+  <!-- AUTH MODAL -->
+  <div id="authModal" class="modal-overlay" onclick="closeAuthModal(event)">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <button onclick="closeAuthModal()" class="absolute top-4 right-4 text-slate-500 hover:text-white transition-colors">
+        <iconify-icon icon="lucide:x" width="20"></iconify-icon>
+      </button>
+      <div class="text-center mb-6">
+        <span class="text-emerald-400 font-bold text-xl block mb-1">TechEduca</span>
+        <p class="text-slate-400 text-sm" id="authModalSubtitle">Войдите, чтобы продолжить обучение</p>
+      </div>
+      <div class="flex border-b border-white/[0.08] mb-6">
+        <div class="auth-tab active" id="tabLogin" onclick="switchAuthTab('login')">Вход</div>
+        <div class="auth-tab" id="tabRegister" onclick="switchAuthTab('register')">Регистрация</div>
+      </div>
+      <form id="loginForm" class="space-y-4" onsubmit="handleLogin(event)">
+        <div>
+          <label class="text-xs text-slate-400 ml-1">Email</label>
+          <input type="email" name="email" required class="auth-input mt-1" placeholder="name@example.com">
+        </div>
+        <div>
+          <label class="text-xs text-slate-400 ml-1">Пароль</label>
+          <input type="password" name="password" required class="auth-input mt-1" placeholder="••••••••••">
+        </div>
+        <button type="submit" class="auth-btn mt-2">Войти в аккаунт</button>
+      </form>
+      <form id="registerForm" class="space-y-4 hidden" onsubmit="handleRegister(event)">
+        <div>
+          <label class="text-xs text-slate-400 ml-1">Имя</label>
+          <input type="text" name="name" required class="auth-input mt-1" placeholder="Ваше имя">
+        </div>
+        <div>
+          <label class="text-xs text-slate-400 ml-1">Email</label>
+          <input type="email" name="email" required class="auth-input mt-1" placeholder="name@example.com">
+        </div>
+        <div>
+          <label class="text-xs text-slate-400 ml-1">Пароль</label>
+          <input type="password" name="password" required minlength="6" class="auth-input mt-1" placeholder="Минимум 6 символов">
+        </div>
+        <button type="submit" class="auth-btn mt-2">Создать аккаунт</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- COURSE MODAL -->
+  <div id="courseModal" class="modal-overlay" onclick="closeCourseModal(event)">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <button onclick="closeCourseModal()" class="absolute top-4 right-4 text-slate-500 hover:text-white transition-colors">
+        <iconify-icon icon="lucide:x" width="20"></iconify-icon>
+      </button>
+      <div class="flex items-center gap-4 mb-6">
+        <span id="modalCourseIcon" class="text-5xl">🇬🇧</span>
+        <div>
+          <h2 id="modalCourseTitle" class="text-xl font-bold text-white">Название курса</h2>
+          <span id="modalCourseLevel" class="text-xs font-semibold uppercase tracking-wider text-emerald-400">Начальный</span>
+        </div>
+      </div>
+      <div class="mb-8">
+        <p id="modalCourseDesc" class="text-sm text-slate-300 leading-relaxed mb-6">Описание курса...</p>
+        <div class="flex items-center gap-4 text-xs text-slate-500">
+           <span id="modalCourseMeta1" class="flex items-center gap-1"><iconify-icon icon="lucide:clock" width="13"></iconify-icon> 40ч</span>
+           <span id="modalCourseMeta2" class="flex items-center gap-1"><iconify-icon icon="lucide:video" width="13"></iconify-icon> Видео</span>
+        </div>
+      </div>
+      <button onclick="handleCourseEnroll()" class="auth-btn w-full">Записаться на курс</button>
+    </div>
+  </div>
+
+  <!-- BLOG MODAL -->
+  <div id="blogModal" class="modal-overlay" onclick="closeBlogModal(event)">
+    <div class="modal-content blog-modal-content" onclick="event.stopPropagation()">
+      <button onclick="closeBlogModal()" class="absolute top-4 right-4 text-slate-500 hover:text-white transition-colors z-10">
+        <iconify-icon icon="lucide:x" width="20"></iconify-icon>
+      </button>
+      <img id="blogModalImg" src="" class="blog-image" alt="Article Image">
+      <h2 id="blogModalTitle" class="text-2xl font-bold text-white mb-2">Заголовок статьи</h2>
+      <div class="flex items-center gap-2 mb-6 text-xs text-slate-500">
+         <iconify-icon icon="lucide:calendar" width="12"></iconify-icon> <span id="blogModalDate">12 Окт 2023</span> • <span id="blogModalReadTime">5 мин</span>
+      </div>
+      <div id="blogModalBody" class="blog-body text-sm"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
